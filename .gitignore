@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+
+**pycache**/
+\*.py\[cod]
+\*\$py.class
+
+# Virtual environment
+
+venv/
+
+# Streamlit secrets (if you use .streamlit/secrets.toml)
+
+.streamlit/secrets.toml
+
+# VSCode settings
+
+.vscode/
+
+# MacOS
+
+.DS\_Store

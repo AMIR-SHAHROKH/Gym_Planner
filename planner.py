@@ -35,10 +35,16 @@ for var in ["HTTP_PROXY", "http_proxy", "HTTPS_PROXY", "https_proxy", "ALL_PROXY
     os.environ.pop(var, None)
 
 # ───── OpenAI API Key ─────
-openai.api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY", None)
-if not openai.api_key:
-    st.error("❌ OpenAI API key not found. Set it in `.env` locally or in Streamlit secrets.")
+try:
+    openai_api_key = st.secrets["OPENAI_API_KEY"]
+except (AttributeError, KeyError):
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+
+if not openai_api_key:
+    st.error("❌ OpenAI API key not found! Please add it to your Streamlit secrets or local .env file.")
     st.stop()
+
+openai.api_key = openai_api_key
 
 
 # ───── Questions ─────

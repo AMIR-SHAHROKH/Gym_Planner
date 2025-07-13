@@ -42,10 +42,10 @@ print(openai.api_key)
 # ───── Questions ─────
 QUESTIONS = [
     {"key": "name", "label": "What’s your name?", "type": "text"},
-    {"key": "age", "label": "Age", "type": "number", "min": 10, "max": 100},
+    {"key": "age", "label": "Age", "type": "number", "min": 10, "max": 100,  "default": 20},
     {"key": "gender", "label": "Gender", "type": "select", "options": ["Male", "Female", "Other"]},
-    {"key": "height", "label": "Height (cm)", "type": "number", "min": 100, "max": 250},
-    {"key": "weight", "label": "Weight (kg)", "type": "number", "min": 30, "max": 200},
+    {"key": "height", "label": "Height (cm)", "type": "number", "min": 100, "max": 250, "default": 175},
+    {"key": "weight", "label": "Weight (kg)", "type": "number", "min": 30, "max": 200, "default": 70},
     {"key": "activity_level", "label": "Activity Level", "type": "select", "options": [
         "Sedentary (little to no exercise)",
         "Lightly Active (1–3 days/week)",

@@ -42,10 +42,10 @@ print(openai.api_key)
 # ───── Questions ─────
 QUESTIONS = [
     {"key": "name", "label": "What’s your name?", "type": "text"},
-    {"key": "age", "label": "Age", "type": "number", "min": 10, "max": 100,  "default": 20},
+    {"key": "age", "label": "Age", "type": "number", "min": 10, "max": 100,  "default": 25},
     {"key": "gender", "label": "Gender", "type": "select", "options": ["Male", "Female", "Other"]},
-    {"key": "height", "label": "Height (cm)", "type": "number", "min": 100, "max": 250, "default": 175},
-    {"key": "weight", "label": "Weight (kg)", "type": "number", "min": 30, "max": 200, "default": 70},
+    {"key": "height", "label": "Height (cm)", "type": "number", "min": 100, "max": 250, "default": 185},
+    {"key": "weight", "label": "Weight (kg)", "type": "number", "min": 30, "max": 200, "default": 80},
     {"key": "activity_level", "label": "Activity Level", "type": "select", "options": [
         "Sedentary (little to no exercise)",
         "Lightly Active (1–3 days/week)",
@@ -72,9 +72,15 @@ st.markdown("Fill out the form below and I’ll generate a 30-day gym and meal p
 with st.form("planner_form"):
     for q in QUESTIONS:
         if q["type"] == "text":
-            st.text_input(q["label"], key=q["key"])
+            st.text_input(q["label"], key=q["key"], value=q.get("default", ""))
         elif q["type"] == "number":
-            st.number_input(q["label"], min_value=q["min"], max_value=q["max"], key=q["key"])
+            st.number_input(
+                q["label"],
+                min_value=q["min"],
+                max_value=q["max"],
+                key=q["key"],
+                value=q.get("default", q["min"])
+            )
         elif q["type"] == "select":
             st.selectbox(q["label"], q["options"], key=q["key"])
         elif q["type"] == "multiselect":
